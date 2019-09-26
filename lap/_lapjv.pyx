@@ -44,8 +44,6 @@ def lapjv(cnp.ndarray cost not None, char extend_cost=False,
 
     Returns
     -------
-    opt: double
-        Assignment cost. Not returned if `return_cost is False`.
     x: (N,) ndarray
         Assignment. `x[i]` specifies the column to which row `i` is assigned.
     y: (N,) ndarray
