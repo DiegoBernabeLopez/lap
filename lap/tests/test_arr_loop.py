@@ -1,7 +1,7 @@
 from pytest import approx
 
 import numpy as np
-from lap import lapmod, lapjv
+from lap import lapjv
 
 
 def prepare_sparse_cost(shape, cc, ii, jj, cost_limit):
@@ -57,25 +57,4 @@ def test_lapjv_arr_loop():
     cost[ii, jj] = cc
     opt, ind1, ind0 = lapjv(cost, extend_cost=True, return_cost=True)
     assert opt == approx(0.8455356917416, 1e-10)
-    assert np.all(ind0 == [5, 1, 2]) or np.all(ind0 == [1, 5, 2])
-
-
-def test_lapmod_arr_loop():
-    shape = (7, 3)
-    cc = np.array([
-        2.593883482138951146e-01, 3.080381437461217620e-01,
-        1.976243020727339317e-01, 2.462740976049606068e-01,
-        4.203993396282833528e-01, 4.286184525458427985e-01,
-        1.706431415909629434e-01, 2.192929371231896185e-01,
-        2.117769622802734286e-01, 2.604267578125001315e-01])
-    ii = np.array([0, 0, 1, 1, 2, 2, 5, 5, 6, 6])
-    jj = np.array([0, 1, 0, 1, 1, 2, 0, 1, 0, 1])
-    cost_limit = 1e3
-    cc, ii, kk = prepare_sparse_cost(shape, cc, ii, jj, cost_limit)
-    opt, ind1, ind0 = lapmod(len(ii)-1, cc, ii, kk, return_cost=True)
-    ind1[ind1 >= shape[1]] = -1
-    ind0[ind0 >= shape[0]] = -1
-    ind1 = ind1[:shape[0]]
-    ind0 = ind0[:shape[1]]
-    assert opt == approx(4000.8455356917416, 1e-10)
     assert np.all(ind0 == [5, 1, 2]) or np.all(ind0 == [1, 5, 2])
