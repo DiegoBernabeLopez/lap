@@ -29,7 +29,7 @@ FP_DYNAMIC_ = FP_DYNAMIC
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def lapjv(cnp.ndarray cost not None, char extend_cost=False,
-          double cost_limit=np.inf, char return_cost=True):
+          double cost_limit=np.inf):
     """Solve linear assignment problem using Jonker-Volgenant algorithm.
 
     Parameters
@@ -41,8 +41,6 @@ def lapjv(cnp.ndarray cost not None, char extend_cost=False,
         Whether or not extend a non-square matrix. Default: False.
     cost_limit: double, optional
         An upper limit for a cost of a single assignment. Default: `np.inf`.
-    return_cost: bool, optional
-        Whether or not to return the assignment cost.
 
     Returns
     -------
