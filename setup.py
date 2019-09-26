@@ -14,14 +14,14 @@ else:
 builtins.__LAP_SETUP__ = True
 
 DISTNAME = 'lap'
-DESCRIPTION = 'Linear Assignment Problem solver (LAPJV/LAPMOD).'
+DESCRIPTION = 'Linear Assignment Problem solver (LAPJV).'
 LONG_DESCRIPTION = """
 **lap** is a linear assignment problem solver using Jonker-Volgenant
-algorithm for dense (LAPJV) or sparse (LAPMOD) matrices.
+algorithm for dense (LAPJV) matrices.
 """
 MAINTAINER = 'Tomas Kazmar'
 MAINTAINER_EMAIL = 'tomash.kazmar@seznam.cz'
-URL = 'https://github.com/gatagat/lap'
+URL = 'https://github.com/DiegoBernabeLopez/lap'
 LICENSE = 'BSD (2-clause)'
 DOWNLOAD_URL = URL
 
@@ -162,8 +162,7 @@ def configuration(parent_package='', top_path=None):
     wrapper_pyx_file = get_wrapper_pyx()
     wrapper_c_file = os.path.splitext(wrapper_pyx_file)[0] + '.cpp'
     c_files = [
-            os.path.join(os.path.dirname(wrapper_pyx_file), 'lapjv.cpp'),
-            os.path.join(os.path.dirname(wrapper_pyx_file), 'lapmod.cpp')]
+            os.path.join(os.path.dirname(wrapper_pyx_file), 'lapjv.cpp')]
     config.add_extension('lap._lapjv', sources=[wrapper_c_file, c_files],
                          include_dirs=[get_numpy_include_dirs(), 'lap'])
 
