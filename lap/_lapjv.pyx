@@ -110,12 +110,5 @@ def lapjv(cnp.ndarray cost not None, char extend_cost=False,
         y_c[y_c >= n_rows] = -1
         x_c = x_c[:n_rows]
         y_c = y_c[:n_cols]
-        if return_cost:
-            opt = cost_c[np.nonzero(x_c != -1)[0], x_c[x_c != -1]].sum()
-    elif return_cost:
-        opt = cost_c[np.arange(n_rows), x_c].sum()
-
-    if return_cost:
-        return opt, x_c, y_c
-    else:
-        return x_c, y_c
+        
+    return x_c, y_c
