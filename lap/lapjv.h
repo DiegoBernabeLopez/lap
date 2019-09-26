@@ -60,8 +60,4 @@ extern int_t lapjv_internal(
     const uint_t n, cost_t *cost[],
     int_t *x, int_t *y);
 
-extern int_t lapmod_internal(
-    const uint_t n, cost_t *cc, uint_t *ii, uint_t *kk,
-    int_t *x, int_t *y, fp_t fp_version);
-
 #endif // LAPJV_H
